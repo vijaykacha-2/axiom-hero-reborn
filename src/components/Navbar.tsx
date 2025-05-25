@@ -1,27 +1,37 @@
 
 import React from 'react';
 import { ShoppingCart, Search } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex items-center space-x-2">
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center">
                 <div className="w-4 h-4 border-2 border-white rounded-full"></div>
               </div>
               <span className="text-white text-xl font-bold tracking-wide">Paragon</span>
-            </div>
+            </Link>
           </div>
 
           {/* Navigation Links */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="#" className="text-white font-semibold hover:text-orange-500 transition-colors duration-300">
+            <Link 
+              to="/" 
+              className={`font-semibold transition-colors duration-300 ${
+                location.pathname === '/' 
+                  ? 'text-orange-500' 
+                  : 'text-white hover:text-orange-500'
+              }`}
+            >
               Home
-            </a>
+            </Link>
             <a href="#" className="text-white font-semibold hover:text-orange-500 transition-colors duration-300">
               Pages
             </a>
@@ -31,9 +41,16 @@ const Navbar = () => {
             <a href="#" className="text-white font-semibold hover:text-orange-500 transition-colors duration-300">
               Blog
             </a>
-            <a href="#" className="text-white font-semibold hover:text-orange-500 transition-colors duration-300">
-              Shop
-            </a>
+            <Link 
+              to="/our-process" 
+              className={`font-semibold transition-colors duration-300 ${
+                location.pathname === '/our-process' 
+                  ? 'text-orange-500' 
+                  : 'text-white hover:text-orange-500'
+              }`}
+            >
+              Our Process
+            </Link>
           </div>
 
           {/* Right Side Icons and CTA */}
